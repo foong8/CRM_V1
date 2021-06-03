@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <a href="/agents">Go back to Agent</a>
+    <hr/>
+    <h1>This is the details of {{ agent.user }}</h1>
+
+    <hr />
+    <a href="{% url 'agents:agent_update' agent.pk %}">Update</a>
+    <a href="{% url 'agents:agent_delete' agent.pk %}">Delete</a>
+
+{% endblock content %}

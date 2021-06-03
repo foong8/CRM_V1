@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if request.user.is_organisor %}
+
+<a href="{% url 'leads:lead_create' %}">Create a new lead</a>
+{% endif %}
+
+<hr />
+    <h1>This is all of our leads</h1>
+    {% for lead in leads %}
+        <div class="lead">
+            <a href="{% url 'leads:lead_details' lead.pk %}">{{ lead.first_name }}</a>
+        </div>
+    {% endfor%}
+
+    {% if unassigned_leads.exists %}
+        <h1>Unassigned Leads</h1>
+        {% for lead in unassigned_leads %}
+            <div class="lead">
+                <a href="{% url 'leads:lead_details' lead.pk %}">{{ lead.first_name }}</a>
+            </div>
+        {% endfor%}
+    {% endif %}
+
+
+{% endblock content %}
